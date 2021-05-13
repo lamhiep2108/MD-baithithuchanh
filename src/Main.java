@@ -25,10 +25,10 @@ public class Main {
                     search(phoneBookManagement, scanner);
                     break;
                 case "6":
-                    System.out.println(phoneBookManagement.readDateFromFile("phoneBook.txt"));
+                    phoneBookManagement.read();
                     break;
                 case "7":
-                    phoneBookManagement.writeToFile("phoneBook.txt");
+                   phoneBookManagement.save();
                     break;
                 case "8":
                     System.exit(0);

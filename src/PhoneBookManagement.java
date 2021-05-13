@@ -1,7 +1,4 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,23 +53,50 @@ public class PhoneBookManagement implements Function {
         }
     }
 
-    public List<PhoneBook> readDateFromFile(String path) {
+    public void save() {
+        FileWriter fileWriter = null;
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
-            phoneBooks = (List<PhoneBook>) ois.readObject();
-            ois.close();
-        } catch (Exception e) {
+            fileWriter = new FileWriter("FILE_NAME");
+            fileWriter.append("Tên,Số điện thoại, Địa chỉ,Email,Facebook");
+            fileWriter.write("\n");
+            for (PhoneBook phoneBook : phoneBooks) {
+                fileWriter.append(phoneBook.getName());
+                fileWriter.append(",");
+                fileWriter.append(phoneBook.getPhoneNumber());
+                fileWriter.append(",");
+                fileWriter.append(phoneBook.getAddress());
+                fileWriter.append(",");
+                fileWriter.append(phoneBook.getEmail());
+                fileWriter.append(",");
+                fileWriter.append(phoneBook.getFacebook());
+                fileWriter.append(",");
+                fileWriter.append("\n");
+            }
+        } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (fileWriter != null)
+                    fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        return phoneBooks;
     }
 
-    public void writeToFile(String path) {
+    public void read() {
+        BufferedReader br = null;
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
-            oos.writeObject(phoneBooks);
-            oos.close();
-        } catch (Exception e) {
+            String line;
+            br = new BufferedReader(new FileReader("FILE_NAME"));
+            while ((line = br.readLine()) != null && line.isEmpty()) {
+                String fields[] = line.split(",");
+                for (int i = 0; i < phoneBooks.size(); i++) {
+                    System.out.println("Tên : " + fields[0] + "Số điện thoại : " + fields[1] + " Địa chỉ: " + fields[2] + " Email: " +
+                            fields[3] + " Facebook : " + fields[4]);
+                }
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
