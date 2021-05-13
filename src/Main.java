@@ -13,23 +13,16 @@ public class Main {
                     phoneBookManagement.showAll();
                     break;
                 case "2":
-                    PhoneBook phoneBook=menus.getPhoneBook();
-                    phoneBookManagement.add(phoneBook);
+                    add(phoneBookManagement, menus);
                     break;
                 case "3":
-                    System.out.println("Nhập số điện thoại bạn muốn sửa: ");
-                    String phoneBook1=scanner.nextLine();
-                    phoneBookManagement.update(phoneBook1);
+                    update(phoneBookManagement, scanner);
                     break;
                 case "4":
-                    System.out.println("Nhập số điện thoại bạn muốn xóa: ");
-                    String phoneBook2=scanner.nextLine();
-                    phoneBookManagement.delete(phoneBook2);
+                    delete(phoneBookManagement, scanner);
                     break;
                 case "5":
-                    System.out.println("Nhập số điện thoại bạn muốn tìm: ");
-                    String phoneBook3=scanner.nextLine();
-                    phoneBookManagement.search(phoneBook3);
+                    search(phoneBookManagement, scanner);
                     break;
                 case "6":
                     System.out.println(phoneBookManagement.readDateFromFile("phoneBook.txt"));
@@ -46,5 +39,28 @@ public class Main {
                     break;
             }
         }while (true);
+    }
+
+    private static void add(PhoneBookManagement phoneBookManagement, Menus menus) {
+        PhoneBook phoneBook= menus.getPhoneBook();
+        phoneBookManagement.add(phoneBook);
+    }
+
+    private static void search(PhoneBookManagement phoneBookManagement, Scanner scanner) {
+        System.out.println("Nhập số điện thoại bạn muốn tìm: ");
+        String phoneBook3= scanner.nextLine();
+        phoneBookManagement.search(phoneBook3);
+    }
+
+    private static void delete(PhoneBookManagement phoneBookManagement, Scanner scanner) {
+        System.out.println("Nhập số điện thoại bạn muốn xóa: ");
+        String phoneNumber= scanner.nextLine();
+        phoneBookManagement.delete(phoneNumber);
+    }
+
+    private static void update(PhoneBookManagement phoneBookManagement, Scanner scanner) {
+        System.out.println("Nhập số điện thoại bạn muốn sửa: ");
+        String phoneBook1= scanner.nextLine();
+        phoneBookManagement.update(phoneBook1);
     }
 }

@@ -17,21 +17,26 @@ public class Menus {
     }
 
     public PhoneBook getPhoneBook() {
-        String phoneNumber= phoneNumber();
-        System.out.println("Nhập nhóm: ");
-        String group = scanner.nextLine();
-        System.out.println("Nhập tên: ");
-        String name = scanner.nextLine();
-        System.out.println("Nhập giới tính: ");
-        String gender = scanner.nextLine();
-        System.out.println("Nhập địa chỉ: ");
-        String address = scanner.nextLine();
-        System.out.println("Nhập ngày sinh: ");
-        String dateOfBirth = scanner.nextLine();
-        String email =   email();
-        System.out.println("nhập facebook");
-        String facebook = scanner.nextLine();
-        return new PhoneBook(phoneNumber, group, name, gender, address, dateOfBirth, email, facebook);
+        try {
+            String phoneNumber = phoneNumber();
+            System.out.println("Nhập nhóm: ");
+            String group = scanner.nextLine();
+            System.out.println("Nhập tên: ");
+            String name = scanner.nextLine();
+            System.out.println("Nhập giới tính: ");
+            String gender = scanner.nextLine();
+            System.out.println("Nhập địa chỉ: ");
+            String address = scanner.nextLine();
+            System.out.println("Nhập ngày sinh: ");
+            String dateOfBirth = scanner.nextLine();
+            String email = email();
+            System.out.println("nhập facebook");
+            String facebook = scanner.nextLine();
+            return new PhoneBook(phoneNumber, group, name, gender, address, dateOfBirth, email, facebook);
+        } catch (Exception e) {
+            System.err.println("lỗi!!1");
+        }
+        return null;
     }
 
     private String email() {
