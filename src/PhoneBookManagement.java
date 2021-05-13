@@ -57,14 +57,20 @@ public class PhoneBookManagement implements Function {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter("FILE_NAME");
-            fileWriter.append("Tên,Số điện thoại, Địa chỉ,Email,Facebook");
+            fileWriter.append("Số điện thoại,nhóm,tên,giới tính, Địa chỉ,ngày sinh,Email,Facebook");
             fileWriter.write("\n");
             for (PhoneBook phoneBook : phoneBooks) {
-                fileWriter.append(phoneBook.getName());
-                fileWriter.append(",");
                 fileWriter.append(phoneBook.getPhoneNumber());
                 fileWriter.append(",");
+                fileWriter.append(phoneBook.getGroup());
+                fileWriter.append(",");
+                fileWriter.append(phoneBook.getName());
+                fileWriter.append(",");
+                fileWriter.append(phoneBook.getGender());
+                fileWriter.append(",");
                 fileWriter.append(phoneBook.getAddress());
+                fileWriter.append(",");
+                fileWriter.append(phoneBook.getDateOfBirth());
                 fileWriter.append(",");
                 fileWriter.append(phoneBook.getEmail());
                 fileWriter.append(",");
@@ -92,8 +98,8 @@ public class PhoneBookManagement implements Function {
             while ((line = br.readLine()) != null && line.isEmpty()) {
                 String fields[] = line.split(",");
                 for (int i = 0; i < phoneBooks.size(); i++) {
-                    System.out.println("Tên : " + fields[0] + "Số điện thoại : " + fields[1] + " Địa chỉ: " + fields[2] + " Email: " +
-                            fields[3] + " Facebook : " + fields[4]);
+                    System.out.println(" Số điện thoại : " + fields[0] + "nhóm : " + fields[1] + "tên: " + fields[2] + " giới tính : " +
+                            fields[3] + " địa chỉ : " + fields[4]+ "ngày sinh"+ fields[5]+ "email"+fields[6]+ "facebook"+ fields[7]);
                 }
             }
         } catch (IOException e) {
